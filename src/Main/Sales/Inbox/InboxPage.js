@@ -8,14 +8,18 @@ import LeadsModule from "../Leads/LeadsModule"
 import DataTableFirst from "../../../components/DataTableFirst"
 import UserListComponent from "../../../Tables/UserListComponent"
 import InboxListComponent from "../../../Tables/InboxListComponent"
+import useLocalStorage from "../../../Hooks/useLocalStorage"
 
 const InboxPage = () => {
   const [activeTab, setActiveTab] = useState(false)
   const [allLeadData, setAllLeadData] = useState([])
+  const [name, setName] = useLocalStorage("rahul")
 
   useEffect(() => {
     getAllLead()
-  }, [])
+  },[name])
+
+  // localStorage.setItem("name", "rahul");
 
   const location = useLocation()
   const currentPath = location.pathname.split()
@@ -51,7 +55,6 @@ const InboxPage = () => {
         sort: true,
       },
     },
-
   ]
 
   // const columns = [
@@ -86,6 +89,10 @@ const InboxPage = () => {
 
   return (
     <div className="inbox-page cm-padding-one">
+      <h1>Input</h1>
+      <input type="text" value={name} onChange={(e)=> setName(e.target.value)}/>
+      <h1>Input</h1>
+
       <div className="inbox-top-btn">
         <button to="/sales" className={`tab-btn `}>
           Inbox
@@ -101,9 +108,14 @@ const InboxPage = () => {
       {/* <LeadsModule */}
 
       {/* <DataGridTables /> */}
-      <DataTableFirst  tabletitle={"Inbox"} allleaddata = {allLeadData} leadColumns= {leadColumns} filterOptions={filterOptions} />
+      <DataTableFirst
+        tabletitle={"Inbox"}
+        allleaddata={allLeadData}
+        leadColumns={leadColumns}
+        filterOptions={filterOptions}
+      />
 
-       {/* <UserListComponent tableName={"Inbox"} columns={columns} row ={setAllLeadData} /> */}
+      {/* <UserListComponent tableName={"Inbox"} columns={columns} row ={setAllLeadData} /> */}
       {/* // <InboxListComponent tableName={"Inbox"} columns={columns} row ={setAllLeadData}  />  */}
       {/* <div className="mt-5">
         <MUIDataTable
