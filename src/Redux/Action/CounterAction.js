@@ -11,3 +11,11 @@ export const Decrement = (data) => {
     payload: data,
   }
 }
+
+
+export const UserSetData = (data) => {
+  return {
+    type: "USERDATA",
+    payload: data,
+  }
+}
