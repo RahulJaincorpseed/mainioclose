@@ -12,16 +12,17 @@ import DataGridNewTable from "../../../components/DataGridNewTable"
 import UserLeadComponent from "../../../Tables/UserLeadComponent"
 import LeadCreateModel from "../../../Model/LeadCreateModel"
 import { useSelector } from "react-redux"
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
 import TableScalaton from "../../../components/TableScalaton"
+import moment from "moment"
 
 const LeadsModule = () => {
   const [activeTab, setActiveTab] = useState(false)
   const [allLeadData, setAllLeadData] = useState([])
   const [leadUserNew, setLeadUserNew] = useState([])
-  const [updateActive, setUpdateActive] = useState(false);
-  const [leadScalatonCall, setLeadScalatonCall] = useState(true);
+  const [updateActive, setUpdateActive] = useState(false)
+  const [leadScalatonCall, setLeadScalatonCall] = useState(true)
 
   useEffect(() => {
     getAllLead()
@@ -38,10 +39,7 @@ const LeadsModule = () => {
   const currentLeadId = Number(splitPath[4])
   // console.log("current path id  is", splitPath );
 
-
   // console.log("id is ", currentUserId)
-
-
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -57,16 +55,33 @@ const LeadsModule = () => {
         )
       },
     },
-    { field: "assigneeName", headerName: "Assignee", width: 150, renderCell: (props)=>{
-      return(
-        <p>
-          {props?.row?.assignee?.fullName}
-        </p>
-      )
-    } },
+    {
+      field: "assigneeName",
+      headerName: "Assignee",
+      width: 150,
+      renderCell: (props) => {
+        return <p>{props?.row?.assignee?.fullName}</p>
+      },
+    },
     { field: "mobileNo", headerName: "Mobile No", width: 150 },
     { field: "email", headerName: "Email", width: 150 },
-    { field: "createDate", headerName: "Date", width: 150 },
+    {
+      field: "createDate",
+      headerName: "Date",
+      width: 150,
+      renderCell: (props) => {
+        const constaLongTimeAgo = moment(props?.row?.createDate, "MM/DD/YYYY")
+        console.log("date is", constaLongTimeAgo._i)
+        return (
+          <div>
+            <moment format="MMMM Do YYYY">
+              {props?.row?.createDate?.dateToFormat}
+            </moment>
+            {/* <moment format="YYYY/MM/DD">{props?.row?.createDate?.dateToFormat}</moment> */}
+          </div>
+        )
+      },
+    },
     {
       field: "assignee",
       headerName: "Assignee",
@@ -93,11 +108,9 @@ const LeadsModule = () => {
     { field: "source", headerName: "Source", width: 150 },
   ]
 
-
-  const getUserId =  (id) =>{
-      console.log("id is ", id)
+  const getUserId = (id) => {
+    console.log("id is ", id)
   }
-
 
   const changeUserAssignee = (user) => {
     console.log("user is selectd", user)
@@ -105,11 +118,10 @@ const LeadsModule = () => {
 
   const changeLeadAssignee = async (id, leadId) => {
     console.log("id is call ssss", id)
-    console.log("current lead D", leadId);
-
+    console.log("current lead D", leadId)
 
     try {
-     const updatePerson =  await axios.put(
+      const updatePerson = await axios.put(
         `/leadService/api/v1/lead/updateAssignee?leadId=${leadId}&userId=${id}`,
         {
           headers: {
@@ -119,12 +131,12 @@ const LeadsModule = () => {
         }
       )
       console.log("updateLeadAssignee is", updatePerson)
-      setUpdateActive((prev)=> !(prev))
+      setUpdateActive((prev) => !prev)
     } catch (err) {
-      if(err.response.status === 500){
+      if (err.response.status === 500) {
         console.log("Something Went Wrong")
       }
-        
+
       console.log(err)
     }
   }
@@ -166,12 +178,15 @@ const LeadsModule = () => {
       <div className="create-user-box">
         <LeadCreateModel />
       </div>
-      {leadScalatonCall ? <TableScalaton /> : <UserLeadComponent
-        tableName={"leads"}
-        columns={columns}
-        row={allLeadData}
-      /> }
-      
+      {leadScalatonCall ? (
+        <TableScalaton />
+      ) : (
+        <UserLeadComponent
+          tableName={"leads"}
+          columns={columns}
+          row={allLeadData}
+        />
+      )}
     </div>
   )
 }
