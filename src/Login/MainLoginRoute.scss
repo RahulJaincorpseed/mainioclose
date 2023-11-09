@@ -1,19 +1,19 @@
-.logo{
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    .erp-image{
-        height: 55px;
-        width: 55px;
-        .main-logo-image{
-            height: 100%;
-            width: 100%;
-            object-fit: cover;
-        }
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  .erp-image {
+    height: 55px;
+    width: 55px;
+    .main-logo-image {
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
     }
-    .erp-text{
-        font-size: 25px;
-        color:  #2b62f9;
-        font-weight: 400;
-    }
+  }
+  .erp-text {
+    font-size: 25px;
+    color: #2b62f9;
+    font-weight: 400;
+  }
 }

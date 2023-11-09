@@ -12,16 +12,16 @@ import DataGridNewTable from "../../../components/DataGridNewTable"
 import UserLeadComponent from "../../../Tables/UserLeadComponent"
 import LeadCreateModel from "../../../Model/LeadCreateModel"
 import { useSelector } from "react-redux"
-import TextField from '@mui/material/TextField';
-import Autocomplete from '@mui/material/Autocomplete';
+import TextField from "@mui/material/TextField"
+import Autocomplete from "@mui/material/Autocomplete"
 import TableScalaton from "../../../components/TableScalaton"
 
 const LeadsModule = () => {
   const [activeTab, setActiveTab] = useState(false)
   const [allLeadData, setAllLeadData] = useState([])
   const [leadUserNew, setLeadUserNew] = useState([])
-  const [updateActive, setUpdateActive] = useState(false);
-  const [leadScalatonCall, setLeadScalatonCall] = useState(true);
+  const [updateActive, setUpdateActive] = useState(false)
+  const [leadScalatonCall, setLeadScalatonCall] = useState(true)
 
   useEffect(() => {
     getAllLead()
@@ -38,12 +38,7 @@ const LeadsModule = () => {
   const currentLeadId = Number(splitPath[4])
   // console.log("current path id  is", splitPath );
 
-
   // console.log("id is ", currentUserId)
-
-
-
-
 
   const columns = [
     { field: "id", headerName: "ID", width: 150 },
@@ -59,23 +54,27 @@ const LeadsModule = () => {
         )
       },
     },
-    { field: "assigneeName", headerName: "Assignee", width: 150, renderCell: (props)=>{
-      return(
-        <p className="mb-0">
-          {props?.row?.assignee?.fullName}
-        </p>
-      )
-    } },
+    {
+      field: "assigneeName",
+      headerName: "Assignee",
+      width: 150,
+      renderCell: (props) => {
+        return <p className="mb-0">{props?.row?.assignee?.fullName}</p>
+      },
+    },
     { field: "mobileNo", headerName: "Mobile No", width: 150 },
     { field: "email", headerName: "Email", width: 150 },
-    { field: "createDate", headerName: "Date", width: 150, renderCell: (props) =>{
-      let date = new Date(props.row.createDate);
-      let dateNew =  date.toLocaleDateString()
-      console.log("date is ", date.toLocaleDateString());
-      return(
-        <p className="mb-0">{dateNew.toString()}</p>
-      )
-    } },
+    {
+      field: "createDate",
+      headerName: "Date",
+      width: 150,
+      renderCell: (props) => {
+        let date = new Date(props.row.createDate)
+        let dateNew = date.toLocaleDateString()
+        console.log("date is ", date.toLocaleDateString())
+        return <p className="mb-0">{dateNew.toString()}</p>
+      },
+    },
     {
       field: "assignee",
       headerName: "Assignee",
@@ -98,54 +97,61 @@ const LeadsModule = () => {
         )
       },
     },
-    { field: "leadDescription", headerName: "lead Description", width: 200, renderCell: (props) =>{
-      (
-        <p className="mb-0">{props?.row?.leadDescription.slice(0,2)}</p>
-      )
-    } },
+    {
+      field: "leadDescription",
+      headerName: "lead Description",
+      width: 200,
+      renderCell: (props) => {
+        ;<p className="mb-0">{props?.row?.leadDescription.slice(0, 2)}</p>
+      },
+    },
     { field: "source", headerName: "Source", width: 150 },
-    { field: "action", headerName: "Action", width: 150, renderCell: (props) =>{
-      return(
-      <p onClick={() => leadDeleteResponse(props.row.id)}><i class="fa-solid fa-trash"></i></p>
-      )
-    } },
+    {
+      field: "action",
+      headerName: "Action",
+      width: 150,
+      renderCell: (props) => {
+        return (
+          <p onClick={() => leadDeleteResponse(props.row.id)}>
+            <i class="fa-solid fa-trash"></i>
+          </p>
+        )
+      },
+    },
   ]
 
-
-  const getUserId =  (id) =>{
-      console.log("id is ", id)
+  const getUserId = (id) => {
+    console.log("id is ", id)
   }
-
 
   const changeUserAssignee = (user) => {
     console.log("user is selectd", user)
   }
 
-
-  const leadDeleteResponse = async (id) =>{
+  const leadDeleteResponse = async (id) => {
     // confirm("Are you sure ?")
-    try{
-    const leadResponse = await axios.delete(`/leadService/api/v1/lead/deleteLead?leadId=${id}`,{
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-        "Content-Type": "application/json",
-      },
-    })
-    console.log("delete", leadResponse)
-  }catch(err){
-    console.log(
-      "err", err
-    )
-  }
+    try {
+      const leadResponse = await axios.delete(
+        `/leadService/api/v1/lead/deleteLead?leadId=${id}`,
+        {
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      console.log("delete", leadResponse)
+    } catch (err) {
+      console.log("err", err)
+    }
   }
 
   const changeLeadAssignee = async (id, leadId) => {
     console.log("id is call ssss", id)
-    console.log("current lead D", leadId);
-
+    console.log("current lead D", leadId)
 
     try {
-     const updatePerson =  await axios.put(
+      const updatePerson = await axios.put(
         `/leadService/api/v1/lead/updateAssignee?leadId=${leadId}&userId=${id}`,
         {
           headers: {
@@ -155,12 +161,12 @@ const LeadsModule = () => {
         }
       )
       console.log("updateLeadAssignee is", updatePerson)
-      setUpdateActive((prev)=> !(prev))
+      setUpdateActive((prev) => !prev)
     } catch (err) {
-      if(err.response.status === 500){
+      if (err.response.status === 500) {
         console.log("Something Went Wrong")
       }
-        
+
       console.log(err)
     }
   }
@@ -202,12 +208,15 @@ const LeadsModule = () => {
       <div className="create-user-box">
         <LeadCreateModel />
       </div>
-      {leadScalatonCall ? <TableScalaton /> : <UserLeadComponent
-        tableName={"leads"}
-        columns={columns}
-        row={allLeadData}
-      /> }
-      
+      {leadScalatonCall ? (
+        <TableScalaton />
+      ) : (
+        <UserLeadComponent
+          tableName={"leads"}
+          columns={columns}
+          row={allLeadData}
+        />
+      )}
     </div>
   )
 }

@@ -29,33 +29,32 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      .main-logo{
+      .main-logo {
         font-size: 35px;
         font-weight: 700;
         line-height: 26px;
-        color: #0067FF;
+        color: #0067ff;
       }
-      .signup-text{
+      .signup-text {
         text-align: center;
         padding: 20px 0px;
-        .start-text{
+        .start-text {
           font-size: 22px;
           font-weight: 700;
           line-height: 26px;
           text-align: center;
           margin-bottom: 20px;
         }
-        .text-points{
-        font-size: 16px;
-        font-weight: 400;
-        line-height: 14px;
-        display: flex;
-        justify-content: center;
-        gap: 12px;
-       
+        .text-points {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 14px;
+          display: flex;
+          justify-content: center;
+          gap: 12px;
         }
       }
-      .input-element{
+      .input-element {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 20px;
@@ -63,44 +62,42 @@
         .inp-label {
           font-size: 16px;
           font-weight: 400;
-          line-height: 14px;  
-          color: #2D3748;
-
+          line-height: 14px;
+          color: #2d3748;
         }
         .input-design {
           width: 100%;
           width: 100%;
           padding: 8px 16px;
-          border: 1px solid rgba(0, 103, 255, .2);
+          border: 1px solid rgba(0, 103, 255, 0.2);
           border-radius: 4px;
-          background: #EBEEF0;
+          background: #ebeef0;
           &:focus {
             outline: none;
           }
         }
       }
-      .check-boxes{
+      .check-boxes {
         padding: 20px 0px;
         display: flex;
         justify-content: center;
-        .item-center{
+        .item-center {
           display: flex;
           align-items: center;
           padding-bottom: 15px;
-        .box-input{
-          height: 15px;
-          width: 15px;
-          border: 1px solid #D1D1D1;
+          .box-input {
+            height: 15px;
+            width: 15px;
+            border: 1px solid #d1d1d1;
+          }
+          .box-label {
+            margin: 0px;
+            margin-left: 10px;
+            font-size: 16px;
+            font-weight: 400;
+            line-height: 14px;
+          }
         }
-        .box-label{
-          margin: 0px;
-          margin-left: 10px;
-          font-size: 16px;
-          font-weight: 400;
-          line-height: 14px;
-        }
-      }
-
       }
       .heading-text {
         font-size: 32px;
@@ -109,7 +106,7 @@
         color: #2b62f9;
         text-transform: uppercase;
       }
-     
+
       .center-btn {
         display: flex;
         padding: 10px 0px;
@@ -127,18 +124,15 @@
 
 // logo header css
 
-.logo-header{
+.logo-header {
   padding: 20px 24px;
-  .logo-icon{
-      font-size: 40px;
-      font-weight: 700;
-      line-height: 26px;
-      color: #0067FF;
-
+  .logo-icon {
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 26px;
+    color: #0067ff;
   }
 }
-
-
 
 @media only screen and (max-width: 992px) {
   .login-page {
@@ -148,58 +142,51 @@
       .left-login {
         display: none;
       }
-      .right-login{
-        .input-element{
+      .right-login {
+        .input-element {
           grid-template-columns: 1fr;
         }
-        
       }
     }
   }
 }
-
-
-
 
 @media only screen and (max-width: 768px) {
   .login-page {
     .login-form {
       grid-template-columns: 1fr;
-      .right-login{
-         .signup-text{
-          .text-points{
+      .right-login {
+        .signup-text {
+          .text-points {
             flex-direction: column;
-            span{
+            span {
               display: none;
             }
           }
-        }.check-boxes{
-          .item-center{
-            .box-label{
+        }
+        .check-boxes {
+          .item-center {
+            .box-label {
               line-height: 25px;
             }
           }
         }
       }
-
     }
   }
 }
-
 
 @media only screen and (max-width: 576px) {
   .login-page {
     .login-form {
-      .right-login{   
-        .center-btn{
+      .right-login {
+        .center-btn {
           justify-content: center;
         }
-        .dont-account{
+        .dont-account {
           text-align: center;
         }
-        
       }
     }
   }
 }
-

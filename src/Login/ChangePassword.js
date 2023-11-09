@@ -12,12 +12,12 @@ const ChangePassword = () => {
   const [confirmPasswordErr, setConfirmPasswordErr] = useState(false)
   const [newPassword, setNewPassword] = useState("")
   const [repeatPassword, setRepeatPassword] = useState("")
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
   // const [passwordErr, setPasswordErr] = useState(false);
 
   const passwordRef = useRef()
   const confirmPasswordRef = useRef()
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const forgetPasswordResponse = useSelector(
     (auth) => auth.AuthReducer.forgetPassword
@@ -83,7 +83,7 @@ const ChangePassword = () => {
       }
     }
 
-    updateExistUserPassword();
+    updateExistUserPassword()
   }
 
   return (

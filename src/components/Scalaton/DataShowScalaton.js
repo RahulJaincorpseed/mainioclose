@@ -6,8 +6,7 @@ const DataShowScalaton = () => {
     <div className="scalaton-rectangle">
       <Skeleton variant="rectangular" width="100%" height={30} />
       <Skeleton variant="rectangular" width="100%" height={30} />
-      <Skeleton variant="rectangular" width="100%" height={30} />
- 
+      <Skeleton variant="rectangular" width="100%" height={30} /> 
     </div>
   )
 }

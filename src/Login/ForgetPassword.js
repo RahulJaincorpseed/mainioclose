@@ -17,7 +17,7 @@ const ForgetPassword = () => {
   const [emailErr, setEmailErr] = useState(false)
   const [emailFormat, setEmailFormat] = useState(false)
   const [emailNotExist, setEmailNotExist] = useState(false)
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false)
 
   const emailRef = useRef()
   const navigate = useNavigate()

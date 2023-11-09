@@ -53,17 +53,16 @@ const SignUp = () => {
   // console.log("signup Redux dataa", signUpRedux)
 
   // signup function
-// useEffect(()=>{
-//   const { username, password, mobile } = { ...createUserData }
-//   setGenerateOtpData((prev) => ({
-//     ...prev,
-//     name: username,
-//     password: password,
-//     mobile: mobile,
-//   }))
+  // useEffect(()=>{
+  //   const { username, password, mobile } = { ...createUserData }
+  //   setGenerateOtpData((prev) => ({
+  //     ...prev,
+  //     name: username,
+  //     password: password,
+  //     mobile: mobile,
+  //   }))
 
-// },[])
-  
+  // },[])
 
   const UserInfoData = (e) => {
     setCreateUserData((prev) => ({ ...prev, [e.target.name]: e.target.value }))
@@ -113,7 +112,7 @@ const SignUp = () => {
     }
 
     const { username, password, mobile } = { ...createUserData }
-   const otpNewData = {name: username, password: password, mobile: mobile}
+    const otpNewData = { name: username, password: password, mobile: mobile }
     // setGenerateOtpData((prev) => ({
     //   ...prev,
     //   name: username,
@@ -121,10 +120,10 @@ const SignUp = () => {
     //   mobile: mobile,
     // }))
 
-    console.log("OTP data kdjld", otpNewData);
+    console.log("OTP data kdjld", otpNewData)
 
     dispatch(SignupDataAction(createUserData))
-    setLoading(true);
+    setLoading(true)
     const generateNewOtpFun = async () => {
       console.log("before api call data is", otpNewData)
       try {
@@ -133,15 +132,15 @@ const SignUp = () => {
           generateOtpData
         )
         console.log("generate otp data", getNewOtp.data)
-        setLoading(false);
+        setLoading(false)
         navigate("/erp/otp")
       } catch (err) {
         console.log(err)
         if (err.response.status === 500) {
           toast.error("Something went wrong")
-          setLoading(false);
+          setLoading(false)
         }
-        setLoading(false);
+        setLoading(false)
       }
     }
     generateNewOtpFun()

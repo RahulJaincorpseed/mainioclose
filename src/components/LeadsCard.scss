@@ -1,7 +1,6 @@
 @import "../SCSS/Colors.scss";
 @import "../SCSS/CommonStyle.scss";
 
-
 .lead-card {
   background: $white;
   margin-bottom: 10px;
@@ -21,7 +20,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 15px 10px;
-    .right-item{
+    .right-item {
       color: gray;
       font-size: 14px;
       cursor: pointer;

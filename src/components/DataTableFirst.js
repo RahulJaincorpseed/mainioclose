@@ -1,18 +1,16 @@
-import React from "react";
-import DataGridTables from "./DataGridTables";
-import MUIDataTable from "mui-datatables";
+import React from "react"
+import DataGridTables from "./DataGridTables"
+import MUIDataTable from "mui-datatables"
 
-
-
-const DataTableFirst = ({tabletitle, allleaddata, leadColumns, filterOptions}) => {
- 
- 
-   
-
-
+const DataTableFirst = ({
+  tabletitle,
+  allleaddata,
+  leadColumns,
+  filterOptions,
+}) => {
   return (
     <>
-    <div className="mt-5">
+      <div className="mt-5">
         <MUIDataTable
           title={tabletitle}
           data={allleaddata}
@@ -22,6 +20,6 @@ const DataTableFirst = ({tabletitle, allleaddata, leadColumns, filterOptions}) =
       </div>
     </>
   )
-};
+}
 
-export default DataTableFirst;
+export default DataTableFirst

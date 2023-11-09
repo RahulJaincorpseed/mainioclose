@@ -13,47 +13,56 @@ toast.configure()
 const OtpPage = () => {
   const [otpData, setOtpData] = useState({})
 
-  
   const signUpRedux = useSelector((state) => state.SignUpDataReducer.data)
-  const [leadUserInfo, setLeadUserInfo] = useState({});
+  const [leadUserInfo, setLeadUserInfo] = useState({})
   const dispatch = useDispatch()
-  const navigate = useNavigate();
-
+  const navigate = useNavigate()
 
   console.log("redux data", signUpRedux)
   let one = Object.values(otpData)
-    const finalOtp = one.join("")
-    // console.log(finalOtp)
-    const finalApiData = { ...signUpRedux, otp: finalOtp }
-    // console.log("i mam final data", finalApiData)
+  const finalOtp = one.join("")
+  // console.log(finalOtp)
+  const finalApiData = { ...signUpRedux, otp: finalOtp }
+  // console.log("i mam final data", finalApiData)
 
   const userRegistration = (e) => {
     e.preventDefault()
-    
 
     console.log("before api call")
     const createUserApi = async () => {
       try {
         console.log("final data for api", finalApiData)
-        const signupResponse = await postQuery('/securityService/api/auth/createNewUser',finalApiData)
+        const signupResponse = await postQuery(
+          "/securityService/api/auth/createNewUser",
+          finalApiData
+        )
         console.log("signup aryan response data", signupResponse)
-        console.log("signup aryan response data", signupResponse.data.data);
-        const {id} = signupResponse.data.data;
-        console.log("id is response ", id);
-        const leadUserData = {...finalApiData, id: id, designation: "NA", department: "NA", role: ["ADMIN"]};
-        delete leadUserData.otp;
-        delete leadUserData.companyName;
-        delete leadUserData.password;
-        delete leadUserData.mobile;
+        console.log("signup aryan response data", signupResponse.data.data)
+        const { id } = signupResponse.data.data
+        console.log("id is response ", id)
+        const leadUserData = {
+          ...finalApiData,
+          id: id,
+          designation: "NA",
+          department: "NA",
+          role: ["ADMIN"],
+        }
+        delete leadUserData.otp
+        delete leadUserData.companyName
+        delete leadUserData.password
+        delete leadUserData.mobile
         // leadUserData.designation = "NA",
         // leadUserData.department = "NA",
-        
-        console.log("final lead user data", leadUserData);
 
-        const createLeadResponse = await postQuery(`/leadService/api/v1/users/createUsser`,leadUserData )
-          console.log("create lead user  user response", createLeadResponse);
-       
-        navigate('/erp/login')
+        console.log("final lead user data", leadUserData)
+
+        const createLeadResponse = await postQuery(
+          `/leadService/api/v1/users/createUsser`,
+          leadUserData
+        )
+        console.log("create lead user  user response", createLeadResponse)
+
+        navigate("/erp/login")
         toast.success("User SignUp Sucessfully")
       } catch (err) {
         console.log(err)
@@ -63,8 +72,7 @@ const OtpPage = () => {
     createUserApi()
   }
 
-
-  console.log("my api state data", leadUserInfo);
+  console.log("my api state data", leadUserInfo)
 
   // console.log("create id data aryan", createApiId);
   // console.log("final api data", finalApiData);

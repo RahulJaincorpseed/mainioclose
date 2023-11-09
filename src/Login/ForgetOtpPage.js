@@ -8,7 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 const ForgetOtpPage = () => {
   const [otpData, setOtpData] = useState({})
-  const [validOtpErr, setValidOtpErr] = useState(false);
+  const [validOtpErr, setValidOtpErr] = useState(false)
 
   const forgetOtpResponse = useSelector(
     (auth) => auth.AuthReducer.forgetPassword
@@ -16,7 +16,7 @@ const ForgetOtpPage = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  console.log("response forget api selector", forgetOtpResponse);
+  console.log("response forget api selector", forgetOtpResponse)
 
   // console.log("redux data", signUpRedux)
 
@@ -25,41 +25,46 @@ const ForgetOtpPage = () => {
     let one = Object.values(otpData)
     const finalOtp = one.join("")
 
-    console.log("i am final otp", finalOtp);
-    console.log("first",  forgetOtpResponse.otp);
-    console.log("second",  forgetOtpResponse.mobile);
+    console.log("i am final otp", finalOtp)
+    console.log("first", forgetOtpResponse.otp)
+    console.log("second", forgetOtpResponse.mobile)
 
-    if(forgetOtpResponse.otp !== finalOtp ){
+    if (forgetOtpResponse.otp !== finalOtp) {
       setValidOtpErr(true)
       return
     }
 
-    let { mobile , otp } = {...forgetOtpResponse};
+    let { mobile, otp } = { ...forgetOtpResponse }
 
-    console.log("i am mobile", mobile);
-    console.log("i am otp", otp);
+    console.log("i am mobile", mobile)
+    console.log("i am otp", otp)
 
     const validateuserData = async () => {
       try {
-        const validateUser = await axios.get(`/securityService/api/auth/validateOtp?mobile=${mobile}&otpNo=${otp}`,{
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-            "Content-Type": "application/json",
-          },
-        })
-        console.log("validate user response", validateUser.data);
-        console.log("validate user response", validateUser.data.status);
-        console.log("validate user response", validateUser.data);
-        console.log("validate user response", validateUser.data.isSuccess);
-        if(validateUser.data.status === 200 && validateUser.data.isSuccess === true){
-          navigate("/erp/change");
-        } 
-        console.log("success data ");
-
+        const validateUser = await axios.get(
+          `/securityService/api/auth/validateOtp?mobile=${mobile}&otpNo=${otp}`,
+          {
+            headers: {
+              "Access-Control-Allow-Origin": "*",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        console.log("validate user response", validateUser.data)
+        console.log("validate user response", validateUser.data.status)
+        console.log("validate user response", validateUser.data)
+        console.log("validate user response", validateUser.data.isSuccess)
+        if (
+          validateUser.data.status === 200 &&
+          validateUser.data.isSuccess === true
+        ) {
+          navigate("/erp/change")
+        }
+        console.log("success data ")
       } catch (err) {
         console.log(err)
-        console.log("not found error");
-        setValidOtpErr(true);
+        console.log("not found error")
+        setValidOtpErr(true)
       }
     }
 
@@ -135,8 +140,12 @@ const ForgetOtpPage = () => {
           type="text"
         />
       </div>
-      {validOtpErr ? <p className="errors-new">Otp not match please Enter a valid Otp</p> : ""}
-       
+      {validOtpErr ? (
+        <p className="errors-new">Otp not match please Enter a valid Otp</p>
+      ) : (
+        ""
+      )}
+
       <div className="resend-timer">
         <OtpTimer seconds={30} minutes={1} resend={sendTimer} />
       </div>
