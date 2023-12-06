@@ -103,7 +103,7 @@ const Login = () => {
           <i className="cm-icon fa-solid fa-user"></i>
           <input
             className="cm-input"
-            type="text"
+            type="email"
             ref={emailRef}
             name="email"
             onChange={(e) => userInfo(e)}
