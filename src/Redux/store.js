@@ -17,6 +17,8 @@ const rootReducer = combineReducers({
   SignUpDataReducer,
 })
 
+
+
 const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 
